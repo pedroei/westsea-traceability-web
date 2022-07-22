@@ -1,0 +1,89 @@
+
+
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="over">
+    <button class="button" routerLink="/home" mat-stroked-button>Menu Principal</button>
+    <mat-divider></mat-divider>
+    <div *ngIf="showNav">
+      <button class="button" routerLink="/utilizadores" mat-stroked-button>Utilizadores</button>
+      <mat-divider></mat-divider>
+      <button class="button" routerLink="/produtoscrud" mat-stroked-button>Designações de Produtos</button>
+      <mat-divider></mat-divider>
+      <button class="button" routerLink="/atividadescrud" mat-stroked-button>Designações de Atividades</button>
+      <mat-divider></mat-divider>
+    </div>
+    <button class="button" routerLink="/produtos" mat-stroked-button>Produtos</button>
+    <mat-divider></mat-divider>
+    <button class="buttonSair" (click)="sair()" mat-stroked-button color="warn">Sair</button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.toggle()"><span class="material-symbols-outlined">menu</span></button>
+
+
+    <div *ngIf="loading" class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loading" class="content">
+      <div class="info">
+        <p>Reference Number : {{produto.referenceNumber}}</p>
+        <p>Designação : {{produto.designation.charAt(0).toUpperCase() + produto.designation.slice(1)}}</p>
+        <p>Tipo : {{produto.productType.charAt(0).toUpperCase() + produto.productType.slice(1)}}</p>
+        <p>Quantidade Inicial : {{produto.initialQuantity}}</p>
+        <p>Quantidade Disponivel : {{produto.availableQuantity}}</p>
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div *ngIf="traceability" class="graph">
+        <span matTooltip="Se o grafico não apresentar todos os nós, recarregue a página" style="position: absolute; top: 10%; right: 10%;" color="#ff6600" class="material-symbols-outlined">help</span>
+        <img src="../../../assets/legend.png" style="position: absolute; top: 13%; right: 10%;" matTooltip="A seta indica o produto que originou o produto na origem">
+        <ngx-graph
+        [draggingEnabled]="false"
+        [enableZoom]="false"
+        [autoZoom]="true"
+        [autoCenter]="true"
+        [panningEnabled]="false"
+        [links]="links"
+        [nodes]="nodes"
+        [layoutSettings]="layoutSettings"
+      >
+
+      <ng-template #defsTemplate>
+        <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+          <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+        </svg:marker>
+        <svg:marker id="triangle" viewBox="0 0 10 10"
+          refX="1" refY="5"
+          markerUnits="strokeWidth"
+          markerWidth="10" markerHeight="10"
+          orient="auto">
+          <svg:path d="M 0 0 L 10 5 L 0 10 z"/>
+        </svg:marker>
+      </ng-template>
+      <!-- <ng-template #nodeTemplate let-node>
+          <svg:g class="node" xmlns="http://www.w3.org/2000/xhtml" >
+            <svg:foreignObject width="30" height="30">
+              <svg matTooltip="{{ node.label }}" (click)="goTo(node.id)" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50%" cy="50%" r="5" fill="#435b97">
+                  <text color="black" text-anchor="middle">{{ node.data.designation }}</text>
+                </circle>
+              </svg>
+            </svg:foreignObject>
+          </svg:g>
+        </ng-template> -->
+        <ng-template #nodeTemplate let-node>
+          <svg:g class="node" xmlns="http://www.w3.org/2000/xhtml" width="150" height="100">
+            <svg:foreignObject width="150" height="100" matTooltip="{{ node.label }}" (click)="goTo(node.data.reference)" style="background-color:#000066;">
+              <xhtml:div class="cardContainer" xmlns="http://www.w3.org/1999/xhtml">
+                <label class="name">{{node.data.designation.charAt(0).toUpperCase() + node.data.designation.slice(1)}}</label>
+              </xhtml:div>
+            </svg:foreignObject>
+          </svg:g>
+        </ng-template>
+        <ng-template #linkTemplate let-link>
+          <svg:g class="edge">
+            <svg:path class="line" stroke-width="2" marker-end="url(#arrow)" ></svg:path>
+          </svg:g>
+        </ng-template>
+      </ngx-graph>
+      </div>
+    </div>
+

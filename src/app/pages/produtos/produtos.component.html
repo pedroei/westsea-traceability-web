@@ -1,0 +1,58 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="over">
+    <button class="button" routerLink="/home" mat-stroked-button>Menu Principal</button>
+    <mat-divider></mat-divider>
+    <div *ngIf="showNav">
+      <button class="button" routerLink="/utilizadores" mat-stroked-button>Utilizadores</button>
+      <mat-divider></mat-divider>
+      <button class="button" routerLink="/produtoscrud" mat-stroked-button>Designações de Produtos</button>
+      <mat-divider></mat-divider>
+      <button class="button" routerLink="/atividadescrud" mat-stroked-button>Designações de Atividades</button>
+      <mat-divider></mat-divider>
+    </div>
+    <button class="button" routerLink="/produtos" mat-stroked-button>Produtos</button>
+    <mat-divider></mat-divider>
+    <button class="buttonSair" (click)="sair()" mat-stroked-button color="warn">Sair</button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.toggle()"><span class="material-symbols-outlined">menu</span></button>
+    <div *ngIf="loading" class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loading" class="mat-elevation-z8">
+      <table mat-table [dataSource]="produtos" >
+        <ng-container matColumnDef="referenceNumber">
+          <th mat-header-cell *matHeaderCellDef> Reference Number </th>
+          <td mat-cell *matCellDef="let produto"> {{produto.referenceNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef> Designação </th>
+          <td mat-cell *matCellDef="let produto"> {{produto.designation.charAt(0).toUpperCase() + produto.designation.slice(1)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="productType">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let produto"> {{produto.productType.charAt(0).toUpperCase() + produto.productType.slice(1)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="initialQuantity">
+          <th mat-header-cell *matHeaderCellDef> Quantidade Inicial </th>
+          <td mat-cell *matCellDef="let produto"> {{produto.initialQuantity}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="availableQuantity">
+          <th mat-header-cell *matHeaderCellDef> Quantidade Disponivel </th>
+          <td mat-cell *matCellDef="let produto"> {{produto.availableQuantity}} </td>
+        </ng-container>
+
+        <tr mat-header-row style="background-color: white; border: 5px #3697ff" *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row class="rows" *matRowDef="let row; columns: displayedColumns;" (click)="check(row.referenceNumber)"></tr>
+      </table>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+

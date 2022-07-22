@@ -1,0 +1,57 @@
+.card{
+  border: 1px solid #435b97;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.loading{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.button{
+  width: 100%;
+  background-color: #000066;
+    color: #ff6600;
+}
+
+.button:hover{
+  background-color:white;
+    color: #ff6600;
+}
+
+.buttonSair{
+  width: 100%;
+  background-color: red;
+    color: white;
+}
+
+.buttonSair:hover{
+  background-color:white;
+    color: #ff6600;
+}
+
+
+table {
+  width: 90%;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+tr{
+  background-color: #6fb2fa;
+}
+
+.rows:hover{
+  background-color: white;
+  cursor: pointer;
+}
+
+.pesquisa{
+  display:flex;justify-content:center;align-items:center;
+}
+mat-form-field{
+
+  width: 50%;
+}
