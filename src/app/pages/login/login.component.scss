@@ -1,55 +1,48 @@
-$primary-color: #3697ff;
-
 .login {
-  color:rgb(0, 0, 0);
-  border-radius: 25px;
-  background: $primary-color;
-  padding: 80px;
-  width: 0 auto;
-  height: 0 auto;
-  display:flex;
-  justify-content:center;
-  align-items:top;
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 30px;
-}
-
-::ng-deep .mat-focused .mat-form-field-label {
-  color: black !important;
- }
-
- ::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: black !important;
-}
-
-::ng-deep.mat-form-field-ripple {
- /*change color of underline when focused*/
- background-color: black !important;;
-}
-
-.form{
-
-  display:flex;
-  justify-content: center;
-  align-items:center;
-  color: white ;
-  
-}
-.button{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url("https://west-sea.pt/wp-content/uploads/2021/05/Header_Sobre.jpg");
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:100% 100%;
+  //min-height:100%;
+  //min-width:100%;
+  background-size:cover;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+mat-card{
+  width: 20rem;
+  background-color: white;
+}
 
+.card-inputs{
+  display: flex;
+  flex-direction: column;
+}
 
-.botao{
-  background-color: #000066;
-  color: #ff6600;
+.button-container{
+  display: flex;
+  justify-content: end;
+}
+mat-card-header{
+  display: flex;
+  justify-content: center;
+  ::ng-deep .mat-card-header-text {
+    margin: 0;
+  }
+}
 
-}  
-.botao:hover{
-  background-color:white;
-  color: #ff6600;
+button{
+  background-color: #324359 !important;
+  color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #324359 !important;
 }
