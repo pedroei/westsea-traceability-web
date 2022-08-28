@@ -1,0 +1,49 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="over">
+    <button class="button" routerLink="/home" mat-stroked-button>
+      Menu Principal
+    </button>
+    <mat-divider></mat-divider>
+    <div *ngIf="showNav">
+      <button class="button" routerLink="/utilizadores" mat-stroked-button>
+        Utilizadores
+      </button>
+      <mat-divider></mat-divider>
+      <button class="button" routerLink="/produtoscrud" mat-stroked-button>
+        Designações de Produtos
+      </button>
+      <mat-divider></mat-divider>
+      <button class="button" routerLink="/atividadescrud" mat-stroked-button>
+        Designações de Atividades
+      </button>
+      <mat-divider></mat-divider>
+    </div>
+    <button class="button" routerLink="/produtos" mat-stroked-button>
+      Produtos
+    </button>
+    <mat-divider></mat-divider>
+    <button class="buttonSair" (click)="sair()" mat-stroked-button color="warn">
+      Sair
+    </button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.toggle()">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+
+    <div *ngIf="loading" class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loading" class="content">
+      <h1 class="product-name">{{ produto.designation }}</h1>
+      <h4>{{ produto.referenceNumber }}</h4>
+      <div *ngFor="let documentSrc of documents">
+        <pdf-viewer
+          [src]="documentSrc"
+          [render-text]="true"
+          [original-size]="false"
+          style="width: 400px; height: 550px"
+        ></pdf-viewer>
+      </div>
+    </div> </mat-drawer-content
+></mat-drawer-container>

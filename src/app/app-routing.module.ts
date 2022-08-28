@@ -9,51 +9,52 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsercrudComponent } from './pages/usercrud/usercrud.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ProductTraceabilityComponent } from './pages/productTraceability/productTraceability.component';
-
+import { ProductDocumentsComponent } from './pages/product-documents/product-documents.component';
 
 const routes: Routes = [
-	{
-		path: 'login',
-		component: LoginComponent,
-    canActivate: [LoginGuard]
-	},
   {
-		path: 'home',
-		component: HomeComponent,
-    canActivate: [MainpageGuard]
-	},
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [LoginGuard],
+  },
   {
-		path: 'atividadescrud',
-		component: ActivitycrudComponent,
-    canActivate: [MainpageGuard]
-	},
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [MainpageGuard],
+  },
   {
-		path: 'produtoscrud',
-		component: ProductcrudComponent,
-    canActivate: [MainpageGuard]
-	},
+    path: 'atividadescrud',
+    component: ActivitycrudComponent,
+    canActivate: [MainpageGuard],
+  },
   {
-		path: 'utilizadores',
-		component: UsercrudComponent,
-    canActivate: [MainpageGuard]
-	},
+    path: 'produtoscrud',
+    component: ProductcrudComponent,
+    canActivate: [MainpageGuard],
+  },
   {
-		path: 'produtos',
-		component: ProdutosComponent,
-    canActivate: [MainpageGuard]
-	},
+    path: 'utilizadores',
+    component: UsercrudComponent,
+    canActivate: [MainpageGuard],
+  },
+  {
+    path: 'produtos',
+    component: ProdutosComponent,
+    canActivate: [MainpageGuard],
+  },
   {
     path: 'produtos/:id',
-    component: ProductTraceabilityComponent
+    component: ProductTraceabilityComponent,
   },
-  { path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  }
+  {
+    path: 'produtos/:id/documents',
+    component: ProductDocumentsComponent,
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

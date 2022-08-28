@@ -2,24 +2,24 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { JwtModule } from '@auth0/angular-jwt';
-import {MatDialogModule} from '@angular/material/dialog';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatListModule} from '@angular/material/list';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MainpageGuard } from './guards/mainpage.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -40,8 +40,8 @@ import { NewuserComponent } from './pages/newuser/newuser.component';
 import { EdituserComponent } from './pages/edituser/edituser.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ProductTraceabilityComponent } from './pages/productTraceability/productTraceability.component';
-
-
+import { ProductDocumentsComponent } from './pages/product-documents/product-documents.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -58,8 +58,9 @@ import { ProductTraceabilityComponent } from './pages/productTraceability/produc
     NewuserComponent,
     EdituserComponent,
     ProdutosComponent,
-    ProductTraceabilityComponent
-   ],
+    ProductTraceabilityComponent,
+    ProductDocumentsComponent,
+  ],
   imports: [
     //BrowserModule,
     BrowserAnimationsModule,
@@ -84,14 +85,13 @@ import { ProductTraceabilityComponent } from './pages/productTraceability/produc
     MatTableModule,
     MatPaginatorModule,
     JwtModule.forRoot({
-			config: {
-				tokenGetter: () => localStorage.getItem('access_token'),
-				allowedDomains: ['localhost:4200/atividades','localhost:4200/login'],
-				disallowedRoutes: [
-				]
-			}
-		}),
-
+      config: {
+        tokenGetter: () => localStorage.getItem('access_token'),
+        allowedDomains: ['localhost:4200/atividades', 'localhost:4200/login'],
+        disallowedRoutes: [],
+      },
+    }),
+    PdfViewerModule,
   ],
   providers: [
     LoginGuard,
@@ -99,9 +99,9 @@ import { ProductTraceabilityComponent } from './pages/productTraceability/produc
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
-      multi: true
-     }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
