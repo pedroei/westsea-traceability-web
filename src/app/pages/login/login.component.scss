@@ -1,6 +1,4 @@
 .login {
-  height: 100%;
-  width: 100%;
   top: 0;
   left: 0;
   position: absolute;
@@ -8,21 +6,11 @@
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position:100% 100%;
-  //min-height:100%;
-  //min-width:100%;
   background-size:cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 mat-card{
   width: 20rem;
   background-color: white;
-}
-
-.card-inputs{
-  display: flex;
-  flex-direction: column;
 }
 
 .button-container{
@@ -45,4 +33,8 @@ button{
 ::ng-deep.mat-form-field-ripple {
   /*change color of underline when focused*/
   background-color: #324359 !important;
+}
+
+.error{
+  color: red;
 }

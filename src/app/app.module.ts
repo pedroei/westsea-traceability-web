@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -42,6 +42,13 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ProductTraceabilityComponent } from './pages/productTraceability/productTraceability.component';
 import { ProductDocumentsComponent } from './pages/product-documents/product-documents.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -92,6 +99,15 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
       },
     }),
     PdfViewerModule,
+    // ngx-translate and the loader module
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     LoginGuard,

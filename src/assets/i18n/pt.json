@@ -1,0 +1,10 @@
+{
+  "LOGIN": {
+    "LOGIN": "Login",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "REQUIRED_EMAIL": "Email obrigatório.",
+    "REQUIRED_PASSWORD": "Password obrigatório.",
+    "INVALID_CREDENTIALS":"Email ou Password incorretos."
+  }
+}
