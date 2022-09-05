@@ -14,5 +14,13 @@
     "PRODUCT_DESIGNATIONS": "Designações de Produtos",
     "USERS": "Utilizadores",
     "LOGOUT": "Sair"
+  },
+  "PRODUCT_DESIGNATION": {
+    "PRODUCTS_DESIGNATIONS": "Designações de Produtos",
+    "PRODUCT_DESIGNATION": "Designação de Produto",
+    "EDIT": "Editar",
+    "REMOVE": "Remover",
+    "ADD_PRODUCT_DESIGNATION": "Adicionar designação de produto",
+    "REMOVE_DESIGNATION_QUESTION": "Tem a certeza que quer apagar a designação "
   }
 }

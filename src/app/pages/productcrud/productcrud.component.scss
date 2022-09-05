@@ -1,72 +1,41 @@
-$primary-color: #3697ff;
-
-.add{
-  position: static;
-  padding-bottom: 2%;
-  margin: 20px;
-  margin-bottom: 20px;
-}
-.item{
-  background-color: beige;
-}
-
-.button{
+table {
   width: 100%;
-  background-color: #000066;
-    color: #ff6600;
 }
 
-.button:hover{
-  background-color:white;
-    color: #ff6600;
-}
-
-
-.divPrincipal{
-  color:rgb(0, 0, 0);
-  border-radius: 25px;
-  background: $primary-color;
-  padding:0 auto;
-  min-height:200px;
-  width: 0 auto;
-  height: 0 auto;
-  align-items:top;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 30px;
-  padding-bottom: 2px;
- 
-}
-
-.buttonSair{
+.header {
   width: 100%;
-  background-color: red;
-    color: white;
+  justify-content: space-between;
 }
 
-.buttonSair:hover{
-  background-color:white;
-    color: #ff6600;
+.m-3 {
+  margin: 2rem;
 }
 
-.botao{
-  background-color: #000066;
-  color: #ff6600;
-  
-  position: relative;
-  display: flex;
-
-  font-size: 70%;
-}  
-
-.botao:hover{
-  background-color:white;
-  color: #ff6600;
+.mat-column-edit {
+  width: 2rem;
+  text-align: center;
+  justify-content: flex-end;
 }
 
-
-
-.buttons{
-  display:flex;
-  position:sticky;
-  left: 90%;
+.mat-column-remove {
+  width: 2rem;
+  text-align: center;
+  justify-content: flex-end;
 }
+
+.mat-row:nth-child(4n+2) {
+  background: #dadada;
+}
+
+.mat-row:nth-child(4n+4) {
+  background: #dadada;
+}
+
+.mat-header-row {
+  background-color: #324359;
+}
+
+.mat-header-cell {
+  color: white;
+}
+

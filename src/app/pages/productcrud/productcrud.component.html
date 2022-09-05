@@ -1,28 +1,40 @@
-<div class="divPrincipal">
-  <div class="add" *ngIf="show">
-    <button mat-raised-button (click)="openDialog()" class="botao"
-            style="position: absolute; right: 20px;margin-top: 0.5%;">
-      <span class="material-symbols-outlined">add</span>
+<div class="m-3">
+  <div class="flex flex-row header item-center">
+    <h1>{{"PRODUCT_DESIGNATION.PRODUCTS_DESIGNATIONS" | translate}}</h1>
+    <button mat-mini-fab color="primary"  (click)="openDialog()" matTooltip="{{'PRODUCT_DESIGNATION.ADD_PRODUCT_DESIGNATION' | translate }}">
+      <mat-icon>add</mat-icon>
     </button>
   </div>
-  <div>
-    <mat-list class="list" style="position:static; justify-content:space-around;">
-      <div mat-subheader>Designações de Produtos</div>
-      <mat-divider style="margin-bottom: 1%;"></mat-divider>
-      <mat-list-item class="item"
-                     style="min-height: 50px ; width:0 auto; height:100%; display:grid; border-radius: 80px; margin-bottom: 2%;"
-                     *ngFor="let produto of produtos">
-        <p style="margin: 20px;">{{produto.designation}}</p>
 
-        <div class="buttons" *ngIf="show">
-          <button class="button" mat-raised-button style="margin-right: 4px" (click)="edit(produto.id)">
-            Editar
-          </button>
-          <button mat-raised-button class="buttonSair" color="warn" (click)="delete(produto.id,produto.designation)">
-            Remover
-          </button>
-        </div>
-      </mat-list-item>
-    </mat-list>
-  </div>
+
+  <table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="designation">
+      <th mat-header-cell *matHeaderCellDef> {{"PRODUCT_DESIGNATION.PRODUCT_DESIGNATION" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <mat-icon color="primary" (click)="edit(element.id)" matTooltip="{{'PRODUCT_DESIGNATION.EDIT' | translate }}">
+          edit
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="remove">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element;let i = index">
+        <mat-icon color="accent" (click)="delete(element, i)"
+                  matTooltip="{{'PRODUCT_DESIGNATION.REMOVE' | translate }}">delete
+        </mat-icon>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></tr>
+  </table>
 </div>

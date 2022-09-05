@@ -7,6 +7,8 @@ import { UserService } from 'src/app/Services/user.service';
 import { Designation } from 'src/app/types/designation';
 import { EditproductComponent } from '../editproduct/editproduct.component';
 import { NewproductComponent } from '../newproduct/newproduct.component';
+import {Observable, switchAll, switchMap, tap} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-productcrud',
@@ -14,33 +16,36 @@ import { NewproductComponent } from '../newproduct/newproduct.component';
   styleUrls: ['./productcrud.component.scss']
 })
 export class ProductcrudComponent implements OnInit {
-  produtos!: Designation[];
-
+  products!: Designation[];
+  displayedColumns: string[] = ['designation', 'edit', 'remove'];
   show=true
 
-  constructor(private router:Router,public dialog: MatDialog, private productService:ProductService, private userService:UserService,private helper: JwtHelperService) { }
+  constructor(private router:Router,
+              public dialog: MatDialog,
+              private productService:ProductService,
+              private userService:UserService,
+              private helper: JwtHelperService,
+              private readonly translate: TranslateService) { }
 
   ngOnInit() {
     const token = this.helper.decodeToken(this.userService.getUserToken)
     if(token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"))
       this.show=false
-    this.updateList()
+    this.updateList().subscribe()
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NewproductComponent);
-    dialogRef.afterClosed().subscribe(
-      data=>this.updateList()
-    );
+    dialogRef.afterClosed().pipe(
+      switchMap(() => this.updateList())
+    ).subscribe();
   }
 
-  delete(id:string,designation:string):void{
-    if(confirm("Tem a certeza que quer apagar a designação "+designation+"?")) {
-      this.productService.delete(id).subscribe(
-        (data) => {
-          console.log(data)
-        })
-        this.updateList()
+  delete(product: Designation, index: number):void{
+    if(confirm(this.translate.instant("PRODUCT_DESIGNATION.REMOVE_DESIGNATION_QUESTION")+product.designation+"?")) {
+      this.productService.delete(product.id).pipe(
+        switchMap(() => this.updateList())
+      ).subscribe()
     }
   }
 
@@ -51,22 +56,15 @@ export class ProductcrudComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(
-      data=>this.updateList()
-    );
+    dialogRef.afterClosed().pipe(
+      switchMap(()=> this.updateList()),
+    ).subscribe();
   }
 
-  updateList(){
-    this.productService.getAll().subscribe(
-      (data) => {
-        this.produtos = data
-      });
+  updateList(): Observable<Designation[]>{
+    return this.productService.getAll().pipe(
+      tap((data) => this.products = data));
   }
-
-  sair(){
-    console.log("sair")
-    localStorage.clear()
-    this.router.navigate(['/login']);
-  }
-
 }
+
+
