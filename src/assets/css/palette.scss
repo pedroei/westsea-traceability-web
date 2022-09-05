@@ -1,0 +1,103 @@
+/* For use in src/lib/core/theming/_palette.scss */
+$md-primary: (
+  50 : #e6e8eb,
+  100 : #c2c7cd,
+  200 : #99a1ac,
+  300 : #707b8b,
+  400 : #515f72,
+  500 : #324359,
+  600 : #2d3d51,
+  700 : #263448,
+  800 : #1f2c3e,
+  900 : #131e2e,
+  A100 : #6ea3ff,
+  A200 : #3b83ff,
+  A400 : #0862ff,
+  A700 : #0057ee,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+/* For use in src/lib/core/theming/_palette.scss */
+$md-secondary: (
+  50 : #eaecee,
+  100 : #cbd0d6,
+  200 : #a8b1ba,
+  300 : #85919e,
+  400 : #6b7a8a,
+  500 : #516275,
+  600 : #4a5a6d,
+  700 : #405062,
+  800 : #374658,
+  900 : #273445,
+  A100 : #8fbfff,
+  A200 : #5ca2ff,
+  A400 : #2985ff,
+  A700 : #0f76ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+/* For use in src/lib/core/theming/_palette.scss */
+$md-accent: (
+  50 : #f9e1e8,
+  100 : #f1b4c5,
+  200 : #e7829e,
+  300 : #dd4f77,
+  400 : #d62a59,
+  500 : #cf043c,
+  600 : #ca0336,
+  700 : #c3032e,
+  800 : #bd0227,
+  900 : #b2011a,
+  A100 : #ffdbde,
+  A200 : #ffa8af,
+  A400 : #ff7581,
+  A700 : #ff5c69,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$primary: #324359;
+$primary-80: rgba(50, 67, 89, 0.8);
+$primary-50: rgba(50, 67, 89, 0.5);

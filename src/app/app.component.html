@@ -1,2 +1,42 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<router-outlet></router-outlet>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+<ng-container *ngIf="mediaQueryService.isDesktop; else mobile">
+  <app-toolbar *ngIf="isLogin()"></app-toolbar>
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #mobile>
+
+  <mat-toolbar *ngIf="isLogin()" color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span routerLink="/">{{"WEST_SEA" | translate}}</span>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav [disableClose]="false">
+      <mat-nav-list>
+        <a (click)="sidenav.close()" mat-list-item routerLink="/produtos"
+           routerLinkActive="active">{{ 'TOOLBAR.PRODUCTS' | translate }}</a>
+        <a (click)="sidenav.close()" mat-list-item routerLink="/produtoscrud"
+           routerLinkActive="active">{{ 'TOOLBAR.PRODUCT_DESIGNATIONS' | translate }}</a>
+        <a (click)="sidenav.close()" mat-list-item routerLink="/atividadescrud"
+           routerLinkActive="active">{{ 'TOOLBAR.ACTIVITY_DESIGNATIONS' | translate }}</a>
+        <a (click)="sidenav.close()" mat-list-item routerLink="/utilizadores"
+           routerLinkActive="active">{{ 'TOOLBAR.USERS' | translate }}</a>
+        <a (click)="logout()" mat-list-item>{{ 'TOOLBAR.LOGOUT' | translate }}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+      <div style="min-height: 100vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</ng-template>

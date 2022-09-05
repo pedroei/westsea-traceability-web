@@ -1,47 +1,28 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="true">
-  <mat-drawer #drawer mode="over">
-    <button class="button" routerLink="/home" mat-stroked-button>Menu Principal</button>
-    <mat-divider></mat-divider>
-    <button class="button" routerLink="/utilizadores" mat-stroked-button>Utilizadores</button>
-    <mat-divider></mat-divider>
-    <button class="button" routerLink="/produtoscrud" mat-stroked-button>Designações de Produtos</button>
-    <mat-divider></mat-divider>
-    <button class="button" routerLink="/atividadescrud" mat-stroked-button>Designações de Atividades</button>
-    <mat-divider></mat-divider>
-    <button class="button" routerLink="/produtos" mat-stroked-button>Produtos</button>
-    <mat-divider></mat-divider>
-    <button class="buttonSair" (click)="sair()" mat-stroked-button color="warn">Sair</button>
-  </mat-drawer>
-  <mat-drawer-content>
-    <button mat-raised-button (click)="drawer.toggle()"><span class="material-symbols-outlined">menu</span></button>
-      <div class="divPrincipal">
-      <div class="add" *ngIf="show">
-        <button mat-raised-button (click)="openDialog()" class="botao" style="position: absolute; right: 20px;margin-top: 0.5%;">
-          <span class="material-symbols-outlined">add</span>
-        </button>
-      </div>
-      <div>
-      <mat-list class="list" style="position:static; justify-content:space-around;">
-        <div mat-subheader>Designações de Produtos</div>
-        <mat-divider style="margin-bottom: 1%;"></mat-divider>
-        <mat-list-item class="item" style="min-height: 50px ; width:0 auto; height:100%; display:grid; border-radius: 80px; margin-bottom: 2%;" *ngFor="let produto of produtos">
-          <p style="margin: 20px;">{{produto.designation}}</p>
+<div class="divPrincipal">
+  <div class="add" *ngIf="show">
+    <button mat-raised-button (click)="openDialog()" class="botao"
+            style="position: absolute; right: 20px;margin-top: 0.5%;">
+      <span class="material-symbols-outlined">add</span>
+    </button>
+  </div>
+  <div>
+    <mat-list class="list" style="position:static; justify-content:space-around;">
+      <div mat-subheader>Designações de Produtos</div>
+      <mat-divider style="margin-bottom: 1%;"></mat-divider>
+      <mat-list-item class="item"
+                     style="min-height: 50px ; width:0 auto; height:100%; display:grid; border-radius: 80px; margin-bottom: 2%;"
+                     *ngFor="let produto of produtos">
+        <p style="margin: 20px;">{{produto.designation}}</p>
 
-          <div class="buttons" *ngIf="show">
-            <button class="button" mat-raised-button  style="margin-right: 4px" (click)="edit(produto.id)">
-              Editar
-            </button>
-            <button mat-raised-button class="buttonSair"  color="warn" (click)="delete(produto.id,produto.designation)">
-              Remover
-            </button>
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </div>
-    </div>
-
-  </mat-drawer-content>
-
-
-
-</mat-drawer-container>
+        <div class="buttons" *ngIf="show">
+          <button class="button" mat-raised-button style="margin-right: 4px" (click)="edit(produto.id)">
+            Editar
+          </button>
+          <button mat-raised-button class="buttonSair" color="warn" (click)="delete(produto.id,produto.designation)">
+            Remover
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

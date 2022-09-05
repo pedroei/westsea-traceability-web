@@ -44,6 +44,9 @@ import { ProductDocumentsComponent } from './pages/product-documents/product-doc
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatRippleModule} from "@angular/material/core";
+import {ToolbarModule} from "./components/toolbar/toolbar.module";
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -91,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatSidenavModule,
     MatTableModule,
     MatPaginatorModule,
+    MatIconModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
@@ -107,7 +111,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatToolbarModule,
+    MatRippleModule,
+    ToolbarModule
   ],
   providers: [
     LoginGuard,

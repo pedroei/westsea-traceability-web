@@ -6,5 +6,13 @@
     "REQUIRED_EMAIL": "Email obrigatório.",
     "REQUIRED_PASSWORD": "Password obrigatório.",
     "INVALID_CREDENTIALS":"Email ou Password incorretos."
+  },
+  "WEST_SEA":"WestSea",
+  "TOOLBAR": {
+    "PRODUCTS": "Produtos",
+    "ACTIVITY_DESIGNATIONS": "Designações de Atividades",
+    "PRODUCT_DESIGNATIONS": "Designações de Produtos",
+    "USERS": "Utilizadores",
+    "LOGOUT": "Sair"
   }
 }
