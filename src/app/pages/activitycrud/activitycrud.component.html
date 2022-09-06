@@ -1,23 +1,39 @@
-<div class="divPrincipal">
-<div class="add" *ngIf="show">
-  <button mat-raised-button (click)="openDialog()" class="botao" style="position: absolute; right: 20px; margin-top: 0.5%;">
-    <span class="material-symbols-outlined">add</span>
-  </button>
-</div>
-<mat-list class="list" style="position: static; justify-content:space-around;">
-  <div mat-subheader>Designações de Atividades</div>
-  <mat-divider style="margin-bottom: 1%;"></mat-divider>
-  <mat-list-item class="item" style="min-height: 50px ; width:0 auto; height:100%; display: grid; border-radius: 80px; margin-bottom: 2%;" *ngFor="let atividade of atividades">
-    <p style="margin: 20px;">{{atividade.designation}}</p>
-    <div class="buttons" *ngIf="show">
-      <button  class="button" mat-raised-button  style="margin-right: 4px" (click)="edit(atividade.id)">
-        Editar
-      </button>
-      <button class="buttonSair" mat-raised-button style="width: 130%;" (click)="delete(atividade.id,atividade.designation)">
-        Remover
-      </button>
-    </div>
-  </mat-list-item>
-</mat-list>
+<div class="m-3">
+  <div class="flex flex-row header item-center">
+    <h1>{{"ACTIVITY_DESIGNATIONS.ACTIVITY_DESIGNATIONS" | translate}}</h1>
+    <button  *ngIf="show" mat-mini-fab color="primary"  (click)="openDialog()" matTooltip="{{'PRODUCT_DESIGNATION.ADD_PRODUCT_DESIGNATION' | translate }}">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
+
+  <table mat-table [dataSource]="activities" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="designation">
+      <th mat-header-cell *matHeaderCellDef> {{"ACTIVITY_DESIGNATIONS.ACTIVITY_DESIGNATION" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit" >
+      <th  mat-header-cell  [hidden]="!show" *matHeaderCellDef></th>
+      <td mat-cell  [hidden]="!show" *matCellDef="let element;">
+        <mat-icon color="primary" (click)="edit(element.id)" matTooltip="{{'PRODUCT_DESIGNATION.EDIT' | translate }}">
+          edit
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="remove">
+      <th mat-header-cell [hidden]="!show" *matHeaderCellDef></th>
+      <td mat-cell [hidden]="!show" *matCellDef="let element;">
+        <mat-icon color="accent" (click)="delete(element)"
+                  matTooltip="{{'PRODUCT_DESIGNATION.REMOVE' | translate }}">delete
+        </mat-icon>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

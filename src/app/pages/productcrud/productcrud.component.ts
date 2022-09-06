@@ -41,7 +41,7 @@ export class ProductcrudComponent implements OnInit {
     ).subscribe();
   }
 
-  delete(product: Designation, index: number):void{
+  delete(product: Designation):void{
     if(confirm(this.translate.instant("PRODUCT_DESIGNATION.REMOVE_DESIGNATION_QUESTION")+product.designation+"?")) {
       this.productService.delete(product.id).pipe(
         switchMap(() => this.updateList())
