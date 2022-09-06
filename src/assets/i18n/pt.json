@@ -15,22 +15,23 @@
     "USERS": "Utilizadores",
     "LOGOUT": "Sair"
   },
+  "EDIT": "Editar",
+  "REMOVE": "Remover",
   "PRODUCT_DESIGNATION": {
     "PRODUCTS_DESIGNATIONS": "Designações de Produtos",
     "PRODUCT_DESIGNATION": "Designação de Produto",
-    "EDIT": "Editar",
-    "REMOVE": "Remover",
-    "ADD_PRODUCT_DESIGNATION": "Adicionar designação de produto",
+    "ADD_PRODUCT_DESIGNATION": "Adicionar Designação de Produto",
     "REMOVE_DESIGNATION_QUESTION": "Tem a certeza que quer apagar a designação "
   },
   "ACTIVITY_DESIGNATIONS": {
     "ACTIVITY_DESIGNATIONS": "Designações de Atividades",
     "ACTIVITY_DESIGNATION": "Designação de Atividade",
-    "ADD_ACTIVITY_DESIGNATION": "Adicionar designação de atividade"
+    "ADD_ACTIVITY_DESIGNATION": "Adicionar Designação de Atividade"
 
   },
   "USERS": {
     "USERS": "Utilizadores",
-    "NAME": "Nome"
+    "NAME": "Nome",
+    "ADD_USER": "Adicionar Utilizador"
   }
 }
