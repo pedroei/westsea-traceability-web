@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 				this.form.controls.email.value,
 				this.form.controls.password.value,
 			).subscribe(
-				(success) => this.router.navigate(['/home']),
+				(success) => this.router.navigate(['/produtos']),
 				(err) =>{
           console.log(err)
           this.error = this.translate.instant("LOGIN.INVALID_CREDENTIALS");

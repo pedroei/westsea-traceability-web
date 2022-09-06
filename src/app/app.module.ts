@@ -34,7 +34,6 @@ import { EditActivityComponent } from './pages/edit-activity/edit-activity.compo
 import { ProductcrudComponent } from './pages/productcrud/productcrud.component';
 import { NewproductComponent } from './pages/newproduct/newproduct.component';
 import { EditproductComponent } from './pages/editproduct/editproduct.component';
-import { HomeComponent } from './pages/home/home.component';
 import { UsercrudComponent } from './pages/usercrud/usercrud.component';
 import { NewuserComponent } from './pages/newuser/newuser.component';
 import { EdituserComponent } from './pages/edituser/edituser.component';
@@ -63,7 +62,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ProductcrudComponent,
     NewproductComponent,
     EditproductComponent,
-    HomeComponent,
     UsercrudComponent,
     NewuserComponent,
     EdituserComponent,

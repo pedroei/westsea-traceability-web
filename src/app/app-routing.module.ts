@@ -5,7 +5,6 @@ import { MainpageGuard } from './guards/mainpage.guard';
 import { LoginGuard } from './guards/login.guard';
 import { ActivitycrudComponent } from './pages/activitycrud/activitycrud.component';
 import { ProductcrudComponent } from './pages/productcrud/productcrud.component';
-import { HomeComponent } from './pages/home/home.component';
 import { UsercrudComponent } from './pages/usercrud/usercrud.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ProductTraceabilityComponent } from './pages/productTraceability/productTraceability.component';
@@ -16,11 +15,6 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuard],
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [MainpageGuard],
   },
   {
     path: 'atividadescrud',
