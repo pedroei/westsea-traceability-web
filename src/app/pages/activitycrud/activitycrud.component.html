@@ -1,7 +1,7 @@
 <div class="m-3">
   <div class="flex flex-row header item-center">
     <h1>{{"ACTIVITY_DESIGNATIONS.ACTIVITY_DESIGNATIONS" | translate}}</h1>
-    <button  *ngIf="show" mat-mini-fab color="primary"  (click)="openDialog()" matTooltip="{{'PRODUCT_DESIGNATION.ADD_PRODUCT_DESIGNATION' | translate }}">
+    <button  *ngIf="show" mat-mini-fab color="primary"  (click)="openDialog()" matTooltip="{{'ACTIVITY_DESIGNATIONS.ADD_ACTIVITY_DESIGNATION' | translate }}">
       <mat-icon>add</mat-icon>
     </button>
   </div>
@@ -17,7 +17,7 @@
     <ng-container matColumnDef="edit" >
       <th  mat-header-cell  [hidden]="!show" *matHeaderCellDef></th>
       <td mat-cell  [hidden]="!show" *matCellDef="let element;">
-        <mat-icon color="primary" (click)="edit(element.id)" matTooltip="{{'PRODUCT_DESIGNATION.EDIT' | translate }}">
+        <mat-icon color="primary" (click)="edit(element.id)" matTooltip="{{'EDIT' | translate }}">
           edit
         </mat-icon>
       </td>
@@ -27,7 +27,7 @@
       <th mat-header-cell [hidden]="!show" *matHeaderCellDef></th>
       <td mat-cell [hidden]="!show" *matCellDef="let element;">
         <mat-icon color="accent" (click)="delete(element)"
-                  matTooltip="{{'PRODUCT_DESIGNATION.REMOVE' | translate }}">delete
+                  matTooltip="{{'REMOVE' | translate }}">delete
         </mat-icon>
       </td>
     </ng-container>

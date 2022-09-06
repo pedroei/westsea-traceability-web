@@ -1,22 +1,30 @@
+<div class="m-3">
+  <div class="flex flex-row header item-center">
+    <h1>{{"USERS.USERS" | translate}}</h1>
+    <button  *ngIf="show" mat-mini-fab color="primary"  (click)="openDialog()" matTooltip="{{'USERS.ADD_USER' | translate }}">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 
-<div class="divPrincipal">
 
-<div class="add" *ngIf="show">
-  <button mat-raised-button (click)="openDialog()" class="botao" style="position: absolute; right: 20px;margin-top: 0.5%;">
-    <span class="material-symbols-outlined">add</span>
-  </button>
-</div>
-<div >
-  <mat-list class="list" style="position: relative; justify-content:space-around;">
-    <mat-list-item class="item" style="min-height: 50px ; width:0 auto; height:100%; display: grid; border-radius: 80px; margin-bottom: 2%;" *ngFor="let user of users">
-      <p>{{user.name}}</p>
-      <div class="buttons" *ngIf="show">
-        <button mat-raised-button class="button" style="margin-right: 4px" (click)="edit(user)">
-          Editar
-        </button>
-      </div>
-    </mat-list-item>
-  </mat-list>
-</div>
 
+  <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> {{"USERS.NAME" | translate}}</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit" >
+    <th  mat-header-cell  [hidden]="!show" *matHeaderCellDef></th>
+    <td mat-cell  [hidden]="!show" *matCellDef="let element;">
+      <mat-icon color="primary" (click)="edit(element)" matTooltip="{{'EDIT' | translate }}">
+        edit
+      </mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 </div>

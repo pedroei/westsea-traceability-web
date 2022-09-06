@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
-import { UserService } from 'src/app/Services/user.service';
-import { User } from 'src/app/types/user';
-import { EdituserComponent } from '../edituser/edituser.component';
-import { NewuserComponent } from '../newuser/newuser.component';
+import {UserService} from 'src/app/Services/user.service';
+import {User} from 'src/app/types/user';
+import {EdituserComponent} from '../edituser/edituser.component';
+import {NewuserComponent} from '../newuser/newuser.component';
+import {Observable, switchMap, tap} from "rxjs";
 
 @Component({
   selector: 'app-usercrud',
@@ -16,49 +17,42 @@ import { NewuserComponent } from '../newuser/newuser.component';
 export class UsercrudComponent implements OnInit {
 
   users!: User[];
+  displayedColumns: string[] = ['name', 'edit'];
+  show = true
 
-  show=true
 
-
-  constructor(private router:Router,public dialog: MatDialog, private userService:UserService,private helper: JwtHelperService) { }
+  constructor(private router: Router, public dialog: MatDialog, private userService: UserService, private helper: JwtHelperService) {
+  }
 
   ngOnInit() {
     const token = this.helper.decodeToken(this.userService.getUserToken)
-    if(token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"))
-      this.show=false
-    this.updateList()
+    if (token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"))
+      this.show = false;
+    this.updateList().subscribe();
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NewuserComponent);
-    dialogRef.afterClosed().subscribe(
-      data=>this.updateList()
-    );
+    dialogRef.afterClosed().pipe(
+      switchMap(() => this.updateList())
+    ).subscribe();
   }
 
-  edit(user:User):void{
+  edit(user: User): void {
     const dialogRef = this.dialog.open(EdituserComponent, {
-       data: {
-         dataKey: user
-       }
-     });
+      data: {
+        dataKey: user
+      }
+    });
 
-    dialogRef.afterClosed().subscribe(
-      data=>this.updateList()
-     );
+    dialogRef.afterClosed().pipe(
+      switchMap(() => this.updateList())
+    ).subscribe();
   }
 
-  updateList(){
-    this.userService.getAll().subscribe(
-      (data) => {
-        this.users = data
-      });
+  updateList(): Observable<User[]> {
+    return this.userService.getAll().pipe(
+      tap(data => this.users = data)
+    )
   }
-
-  sair(){
-    console.log("sair")
-    localStorage.clear()
-    this.router.navigate(['/login']);
-  }
-
 }
