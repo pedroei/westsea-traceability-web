@@ -12,7 +12,6 @@ import {MediaQueryService} from "./Services/media-query.service";
 })
 export class AppComponent {
   @ViewChild('sidenav', { static: false }) sidenav!: MatSidenav;
-
   constructor(private translate: TranslateService,
               private readonly userService: UserService,
               private readonly router: Router,
@@ -23,6 +22,13 @@ export class AppComponent {
 
   isLogin(): boolean {
     return this.userService.isLoggedIn;
+  }
+
+  isClient(): boolean{
+    if(this.isLogin()){
+      return this.userService.isClient();
+    }
+   return false;
   }
 
   logout(){

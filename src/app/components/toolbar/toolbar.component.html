@@ -5,11 +5,11 @@
 
   <div class="w-full flex flex-row ">
     <button mat-button routerLink="/produtos" routerLinkActive="active">{{ 'TOOLBAR.PRODUCTS' | translate }}</button>
-    <button mat-button routerLink="/produtoscrud"
+    <button mat-button routerLink="/produtoscrud" *ngIf="show"
             routerLinkActive="active">{{ 'TOOLBAR.PRODUCT_DESIGNATIONS' | translate }}</button>
-    <button mat-button routerLink="/atividadescrud"
+    <button mat-button routerLink="/atividadescrud" *ngIf="show"
             routerLinkActive="active">{{ 'TOOLBAR.ACTIVITY_DESIGNATIONS' | translate }}</button>
-    <button mat-button routerLink="/utilizadores" routerLinkActive="active">{{ 'TOOLBAR.USERS' | translate }}</button>
+    <button mat-button *ngIf="show" routerLink="/utilizadores" routerLinkActive="active">{{ 'TOOLBAR.USERS' | translate }}</button>
     <span class="spacer"></span>
     <button mat-fab color="primary" class="shadow-none" (click)="logout()">
       <mat-icon matTooltip="{{'TOOLBAR.LOGOUT' | translate }}">logout</mat-icon>

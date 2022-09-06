@@ -21,11 +21,11 @@
       <mat-nav-list>
         <a (click)="sidenav.close()" mat-list-item routerLink="/produtos"
            routerLinkActive="active">{{ 'TOOLBAR.PRODUCTS' | translate }}</a>
-        <a (click)="sidenav.close()" mat-list-item routerLink="/produtoscrud"
+        <a (click)="sidenav.close()" mat-list-item routerLink="/produtoscrud" *ngIf="isClient()"
            routerLinkActive="active">{{ 'TOOLBAR.PRODUCT_DESIGNATIONS' | translate }}</a>
-        <a (click)="sidenav.close()" mat-list-item routerLink="/atividadescrud"
+        <a (click)="sidenav.close()" mat-list-item routerLink="/atividadescrud" *ngIf="isClient()"
            routerLinkActive="active">{{ 'TOOLBAR.ACTIVITY_DESIGNATIONS' | translate }}</a>
-        <a (click)="sidenav.close()" mat-list-item routerLink="/utilizadores"
+        <a (click)="sidenav.close()" mat-list-item routerLink="/utilizadores" *ngIf="isClient()"
            routerLinkActive="active">{{ 'TOOLBAR.USERS' | translate }}</a>
         <a (click)="logout()" mat-list-item>{{ 'TOOLBAR.LOGOUT' | translate }}</a>
       </mat-nav-list>

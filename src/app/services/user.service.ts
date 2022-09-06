@@ -62,4 +62,15 @@ export class UserService {
       })
     );
   }
+
+
+  isEmployee(): boolean{
+    const token = this.helper.decodeToken(this.getUserToken)
+    return !(token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"));
+  }
+
+  isClient(): boolean{
+    const token = this.helper.decodeToken(this.getUserToken)
+    return !(token.roles.includes("ROLE_CLIENT") && !token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"));
+  }
 }

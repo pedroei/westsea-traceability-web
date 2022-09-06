@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
-import {JwtHelperService} from '@auth0/angular-jwt';
-
 import {UserService} from 'src/app/Services/user.service';
 import {User} from 'src/app/types/user';
 import {EdituserComponent} from '../edituser/edituser.component';
@@ -21,13 +19,13 @@ export class UsercrudComponent implements OnInit {
   show = true
 
 
-  constructor(private router: Router, public dialog: MatDialog, private userService: UserService, private helper: JwtHelperService) {
+  constructor(private router: Router,
+              public dialog: MatDialog,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-    const token = this.helper.decodeToken(this.userService.getUserToken)
-    if (token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"))
-      this.show = false;
+    this.show = this.userService.isEmployee();
     this.updateList().subscribe();
   }
 
