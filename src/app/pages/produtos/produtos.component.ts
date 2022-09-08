@@ -1,62 +1,54 @@
-import { Component, OnInit,Input, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { TraceabilityService } from 'src/app/Services/traceability.service';
-import { UserService } from 'src/app/Services/user.service';
-import { Produto } from 'src/app/types/produto';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {Router} from '@angular/router';
+import {TraceabilityService} from 'src/app/Services/traceability.service';
+import {Produto} from 'src/app/types/produto';
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.scss']
+  styleUrls: ['./produtos.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ProdutosComponent implements OnInit {
-
-  showNav=true
-
-  @ViewChild(MatTable)
-  table!: MatTable<Produto>;
-
-  displayedColumns: string[] = ['referenceNumber','designation','productType','initialQuantity','availableQuantity']
-
+  products:Produto[] = [];
+  displayedColumns: string[] = ['referenceNumber','designation','productType','initialQuantity','availableQuantity', 'documents', 'traceability']
   loading = true
 
-  produtos!:Produto[]
-  dataSource :MatTableDataSource<any>
 
-  constructor(private router:Router,private traceabilityService:TraceabilityService,private helper: JwtHelperService, private userService:UserService) {
-    this.produtos=[]
-    this.dataSource = new MatTableDataSource(this.produtos)
+  constructor(private router:Router,
+              private traceabilityService:TraceabilityService) {
    }
 
   ngOnInit() {
-    const token = this.helper.decodeToken(this.userService.getUserToken)
-    if(token.roles.includes("ROLE_CLIENT") && !token.roles.includes("ROLE_EMPLOYEE") && !token.roles.includes("ROLE_ADMIN"))
-      this.showNav=false
-  }
-
-  ngAfterViewInit() {
     this.updateList()
-    this.dataSource = new MatTableDataSource(this.produtos)
   }
 
-  check(referenceNumber:string){
-    this.router.navigate([`/produtos/${referenceNumber}`])
+  goToProductTraceability(referenceNumber:string){
+    this.router.navigate([`/produtos/${referenceNumber}/traceability`])
+  }
+
+  goToProductDocuments(referenceNumber:string){
+    this.router.navigate([`/produtos/${referenceNumber}/documents`])
   }
 
   updateList(){
-    this.traceabilityService.getProducts().subscribe(
+    this.traceabilityService.getProducts().pipe().subscribe(
       (data) => {
-        this.produtos = data
+        console.log(data);
+        this.products = data;
         this.loading = false
+      },
+      () => {
+        this.loading = false;
       });
-  }
-
-  sair(){
-    console.log("sair")
-    localStorage.clear()
-    this.router.navigate(['/login']);
   }
 
 }

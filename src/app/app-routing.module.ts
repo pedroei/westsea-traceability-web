@@ -37,7 +37,7 @@ const routes: Routes = [
     canActivate: [MainpageGuard],
   },
   {
-    path: 'produtos/:id',
+    path: 'produtos/:id/traceability',
     component: ProductTraceabilityComponent,
   },
   {

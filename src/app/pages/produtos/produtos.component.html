@@ -1,38 +1,62 @@
-    <div *ngIf="loading" class="loading">
-      <mat-spinner></mat-spinner>
-    </div>
-    <div *ngIf="!loading" class="mat-elevation-z8">
-      <table mat-table [dataSource]="produtos" >
-        <ng-container matColumnDef="referenceNumber">
-          <th mat-header-cell *matHeaderCellDef> Reference Number </th>
-          <td mat-cell *matCellDef="let produto"> {{produto.referenceNumber}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="designation">
-          <th mat-header-cell *matHeaderCellDef> Designação </th>
-          <td mat-cell *matCellDef="let produto"> {{produto.designation.charAt(0).toUpperCase() + produto.designation.slice(1)}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="productType">
-          <th mat-header-cell *matHeaderCellDef> Tipo </th>
-          <td mat-cell *matCellDef="let produto"> {{produto.productType.charAt(0).toUpperCase() + produto.productType.slice(1)}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="initialQuantity">
-          <th mat-header-cell *matHeaderCellDef> Quantidade Inicial </th>
-          <td mat-cell *matCellDef="let produto"> {{produto.initialQuantity}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="availableQuantity">
-          <th mat-header-cell *matHeaderCellDef> Quantidade Disponivel </th>
-          <td mat-cell *matCellDef="let produto"> {{produto.availableQuantity}} </td>
-        </ng-container>
-
-        <tr mat-header-row style="background-color: white; border: 5px #3697ff" *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row class="rows" *matRowDef="let row; columns: displayedColumns;" (click)="check(row.referenceNumber)"></tr>
-      </table>
-    </div>
+<div *ngIf="loading" class="loading">
+  <mat-spinner></mat-spinner>
+</div>
 
 
+<div class="m-3" *ngIf="!loading">
+  <div class="flex flex-row header item-center">
+    <h1>{{"PRODUCTS.PRODUCTS" | translate}}</h1>
+  </div>
 
+
+  <table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="referenceNumber">
+      <th mat-header-cell *matHeaderCellDef> {{"PRODUCTS.REFERENCE_NUMBER" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.referenceNumber}} </td>
+    </ng-container>
+
+     <ng-container matColumnDef="designation">
+      <th mat-header-cell *matHeaderCellDef> {{"PRODUCTS.DESIGNATION" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.designation.charAt(0).toUpperCase() + element.designation.slice(1)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="productType">
+      <th mat-header-cell *matHeaderCellDef> {{"PRODUCTS.TYPE" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.productType.charAt(0).toUpperCase() + element.productType.slice(1)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="initialQuantity">
+      <th mat-header-cell *matHeaderCellDef> {{"PRODUCTS.INITIAL_QUANTITY" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.initialQuantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="availableQuantity">
+      <th mat-header-cell *matHeaderCellDef> {{"PRODUCTS.AVAILABLE_QUANTITY" | translate}}</th>
+      <td mat-cell *matCellDef="let element"> {{element.availableQuantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="documents" >
+      <th  mat-header-cell   *matHeaderCellDef></th>
+      <td mat-cell   *matCellDef="let element;">
+        <mat-icon color="primary" (click)="goToProductDocuments(element.referenceNumber)" matTooltip="{{'PRODUCTS.DOCUMENTS' | translate }}">
+          file_present
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="traceability">
+      <th mat-header-cell  *matHeaderCellDef></th>
+      <td mat-cell  *matCellDef="let element;">
+        <mat-icon (click)="goToProductTraceability(element.referenceNumber)" color="secodary" class="material-icons-outlined"
+                  matTooltip="{{'PRODUCTS.TRACEABILITY' | translate }}">account_tree
+        </mat-icon>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
 

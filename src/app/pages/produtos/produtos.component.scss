@@ -1,57 +1,47 @@
-.card{
-  border: 1px solid #435b97;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
 .loading{
   display:flex;
   justify-content:center;
   align-items:center;
 }
-.button{
-  width: 100%;
-  background-color: #000066;
-    color: #ff6600;
-}
-
-.button:hover{
-  background-color:white;
-    color: #ff6600;
-}
-
-.buttonSair{
-  width: 100%;
-  background-color: red;
-    color: white;
-}
-
-.buttonSair:hover{
-  background-color:white;
-    color: #ff6600;
-}
-
 
 table {
-  width: 90%;
-  margin-top: 10px;
-  margin-left:auto;
-  margin-right:auto;
+  width: 100%;
 }
 
-tr{
-  background-color: #6fb2fa;
+.header {
+  width: 100%;
+  justify-content: space-between;
 }
 
-.rows:hover{
-  background-color: white;
-  cursor: pointer;
+.m-3 {
+  margin: 2rem;
 }
 
-.pesquisa{
-  display:flex;justify-content:center;align-items:center;
+.mat-column-edit {
+  width: 2rem;
+  text-align: center;
+  justify-content: flex-end;
 }
-mat-form-field{
 
-  width: 50%;
+.mat-column-remove {
+  width: 2rem;
+  text-align: center;
+  justify-content: flex-end;
 }
+
+.mat-row:nth-child(4n+2) {
+  background: #dadada;
+}
+
+.mat-row:nth-child(4n+4) {
+  background: #dadada;
+}
+
+.mat-header-row {
+  background-color: #324359;
+}
+
+.mat-header-cell {
+  color: white;
+}
+

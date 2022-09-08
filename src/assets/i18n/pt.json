@@ -33,5 +33,15 @@
     "USERS": "Utilizadores",
     "NAME": "Nome",
     "ADD_USER": "Adicionar Utilizador"
+  },
+  "PRODUCTS": {
+    "PRODUCTS": "Produtos",
+    "REFERENCE_NUMBER": "Número de Referência",
+    "DESIGNATION": "Designação",
+    "TYPE": "Tipo",
+    "INITIAL_QUANTITY": "Quantidade Inicial",
+    "AVAILABLE_QUANTITY": "Quantidade Disponível",
+    "DOCUMENTS": "Documentos",
+    "TRACEABILITY": "Rastreabilidade"
   }
 }
