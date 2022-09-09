@@ -19,7 +19,7 @@ export class ProductDocumentsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private traceabilityService: TraceabilityService,
+    private traceabilityService: TraceabilityService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -45,14 +45,13 @@ export class ProductDocumentsComponent implements OnInit {
           this.loading = false;
         }),
         tap((data: Produto) => {
-          data.documentKeys.forEach((docKey) =>
+          data.documentKeys?.forEach((docKey) =>
             this.getDocument(data.ID, docKey)
           );
         })
       )
       .subscribe();
   }
-
 
   getDocument(productId: string, docKey: DocumentKey) {
     this.traceabilityService

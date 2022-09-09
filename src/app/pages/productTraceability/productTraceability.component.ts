@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
-import {TraceabilityService} from 'src/app/Services/traceability.service';
-import {Produto} from 'src/app/types/produto';
-import {Edge, Node} from '@swimlane/ngx-graph';
-import {TranslateService} from "@ngx-translate/core";
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { TraceabilityService } from 'src/app/Services/traceability.service';
+import { Produto } from 'src/app/types/produto';
+import { Edge, Node } from '@swimlane/ngx-graph';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-productTraceability',
@@ -60,7 +60,7 @@ export class ProductTraceabilityComponent implements OnInit {
     this.nodes.push({
       id: id,
       label: [
-        this.translate.instant("PRODUCTS.AVAILABLE_QUANTITY"),
+        this.translate.instant('PRODUCTS.AVAILABLE_QUANTITY'),
         this.product.availableQuantity.toString(),
       ].join(' : '),
       data: {
@@ -81,7 +81,7 @@ export class ProductTraceabilityComponent implements OnInit {
     this.nodes.push({
       id: id,
       label: [
-        this.translate.instant("PRODUCTS.QUANTITY_USED"),
+        this.translate.instant('PRODUCTS.QUANTITY_USED'),
         product.usedQuantityAsInput.toString(),
       ].join(' : '),
       data: {
@@ -114,6 +114,6 @@ export class ProductTraceabilityComponent implements OnInit {
   }
 
   goTo(id: string) {
-    this.router.navigate([`/produtos/${id}`]);
+    this.router.navigate([`/produtos/${id}/traceability`]);
   }
 }
