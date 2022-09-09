@@ -46,11 +46,9 @@ export class ProductcrudComponent implements OnInit {
     }
   }
 
-  edit(id: string): void {
+  edit(product: Designation): void {
     const dialogRef = this.dialog.open(EditproductComponent, {
-      data: {
-        dataKey: id
-      }
+      data: product
     });
 
     dialogRef.afterClosed().pipe(

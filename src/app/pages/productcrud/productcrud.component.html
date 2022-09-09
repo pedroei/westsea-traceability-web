@@ -17,7 +17,7 @@
     <ng-container matColumnDef="edit" >
       <th  mat-header-cell  [hidden]="!show" *matHeaderCellDef></th>
       <td mat-cell  [hidden]="!show" *matCellDef="let element;">
-        <mat-icon color="primary" (click)="edit(element.id)" matTooltip="{{'EDIT' | translate }}">
+        <mat-icon color="primary" (click)="edit(element)" matTooltip="{{'EDIT' | translate }}">
           edit
         </mat-icon>
       </td>

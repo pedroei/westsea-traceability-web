@@ -14,8 +14,9 @@ export class EditproductComponent implements OnInit {
   form: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private router: Router,private formBuilder: FormBuilder,private productService:ProductService,public dialogRef: MatDialogRef<EditproductComponent>) {
+    console.log(data);
     this.form = new FormGroup({
-      nome: new FormControl('', [Validators.required])
+      nome: new FormControl(data.designation, [Validators.required])
     });
     this.error = null;
    }
@@ -26,8 +27,13 @@ export class EditproductComponent implements OnInit {
 
   submit(){
     if (this.form.valid) {
+      if(this.form.controls.nome.value === this.data.designation){
+        this.form.controls['nome'].setErrors({'incorrect': true});
+        return;
+      }
+
       this.productService.edit(
-        this.data.dataKey,
+        this.data.id,
         this.form.controls.nome.value
       ).subscribe(
         (success) => {this.dialogRef.close()},

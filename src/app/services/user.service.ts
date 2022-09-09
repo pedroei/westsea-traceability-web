@@ -40,11 +40,7 @@ export class UserService {
       password: password,
       roles: roles,
     };
-    return this.http.post<User>(this.url, body).pipe(
-      map((res: User) => {
-        console.log(res);
-      })
-    );
+    return this.http.post<User>(this.url, body)
   }
 
   getAll(): Observable<User[]> {
@@ -56,11 +52,7 @@ export class UserService {
       name: nome,
       roles: roles,
     };
-    return this.http.put<User>(`${this.url}/${id}`, body).pipe(
-      map((res: User) => {
-        console.log(res);
-      })
-    );
+    return this.http.put<User>(`${this.url}/${id}`, body)
   }
 
 

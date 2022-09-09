@@ -22,7 +22,9 @@
     "PRODUCTS_DESIGNATIONS": "Designações de Produtos",
     "PRODUCT_DESIGNATION": "Designação de Produto",
     "ADD_PRODUCT_DESIGNATION": "Adicionar Designação de Produto",
-    "REMOVE_DESIGNATION_QUESTION": "Tem a certeza que quer apagar a designação "
+    "REMOVE_DESIGNATION_QUESTION": "Tem a certeza que quer apagar a designação ",
+    "NEW_PRODUCT_DESIGNATION": "Nova Designação de Produto",
+    "EDIT_PRODUCT_DESIGNATION": "Eidtar Designação de Produto"
   },
   "ACTIVITY_DESIGNATIONS": {
     "ACTIVITY_DESIGNATIONS": "Designações de Atividades",
