@@ -1,9 +1,10 @@
-$primary-color: #3697ff;
-
 .container{
   height: 100%;
 }
-
+.header {
+  justify-content: space-between;
+  align-items: center;
+}
 .node{
   cursor: pointer;
   pointer-events: auto;
@@ -23,15 +24,11 @@ ngx-graph{
   display:flex;
   justify-content:center;
   align-items:center;
-  color:rgb(0, 0, 0);
+  color: black;
   border-radius: 25px;
-  background: $primary-color;
-  padding: 50px;
-  width: 0 auto;
-  height: 0 auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:top;
+  background: white;
+  height: 100%;
+  width: 100%;
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 30px;
@@ -46,62 +43,33 @@ svg:hover{
   stroke:white;
 }
 
-.info{
-  margin-left: 10%;
-  width: 50vh;
-  margin-bottom: 10px;
-  border-radius: 25px;
-  border: 2px solid $primary-color;
-  padding: 20px;
-}
-
-.divider{
-  margin:20px
-}
-
 .mat-tooltip {
   white-space: pre-line;
 }
 .cardContainer {
   height: auto;
-  width: 150;
+  width: 100%;
   display: inline;}
 
 .name {
-  color: #ff6600;
+  color: #fff;
   font-size: 24px;
   cursor: pointer;
 }
 
 label {
-  margin: 0;
-  top: 50%;
-  position: relative;
-  display: block;
   text-align: center;
   font-size: 20px;
   margin-top: 4px;
   margin-bottom: 8px;
 }
-
-.button{
-  width: 100%;
-  background-color: #000066;
-    color: #ff6600;
+.cardContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //text-align: center;
+  height: 100%;
 }
-
-.button:hover{
-  background-color:white;
-    color: #ff6600;
-}
-
-.buttonSair{
-  width: 100%;
-  background-color: red;
-    color: white;
-}
-
-.buttonSair:hover{
-  background-color:white;
-    color: #ff6600;
+.m-3 {
+  margin: 2rem;
 }

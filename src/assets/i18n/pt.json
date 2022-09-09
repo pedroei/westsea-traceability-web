@@ -42,6 +42,9 @@
     "INITIAL_QUANTITY": "Quantidade Inicial",
     "AVAILABLE_QUANTITY": "Quantidade Disponível",
     "DOCUMENTS": "Documentos",
-    "TRACEABILITY": "Rastreabilidade"
+    "TRACEABILITY": "Rastreabilidade",
+    "QUANTITY_USED": "Quantidade Utilizada",
+    "NO_TRACEABILITY": "",
+    "RELOAD_PAGE": "Se o grafico não apresentar todos os nós, recarregue a página"
   }
 }
