@@ -15,7 +15,7 @@ export class EditActivityComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private router: Router,private formBuilder: FormBuilder,private activityService:ActivityService,public dialogRef: MatDialogRef<EditActivityComponent>) {
     this.form = new FormGroup({
-      nome: new FormControl('', [Validators.required])
+      nome: new FormControl(data.designation, [Validators.required])
     });
     this.error = null;
    }
@@ -26,8 +26,12 @@ export class EditActivityComponent implements OnInit {
 
   submit(){
     if (this.form.valid) {
+      if(this.form.controls.nome.value === this.data.designation){
+        this.form.controls['nome'].setErrors({'incorrect': true});
+        return;
+      }
       this.activityService.edit(
-        this.data.dataKey,
+        this.data.id,
         this.form.controls.nome.value
       ).subscribe(
         (success) => {this.dialogRef.close()},

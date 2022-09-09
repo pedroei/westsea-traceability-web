@@ -48,12 +48,10 @@ export class ActivitycrudComponent implements OnInit {
     }
   }
 
-  edit(id: string): void {
+  edit(activity: Designation): void {
     const dialogRef = this.dialog.open(EditActivityComponent, {
-      data: {
-        dataKey: id
-      }
-    });
+        data: activity
+      });
 
     dialogRef.afterClosed().pipe(
       switchMap(() => this.updateList())

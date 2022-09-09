@@ -29,7 +29,9 @@
   "ACTIVITY_DESIGNATIONS": {
     "ACTIVITY_DESIGNATIONS": "Designações de Atividades",
     "ACTIVITY_DESIGNATION": "Designação de Atividade",
-    "ADD_ACTIVITY_DESIGNATION": "Adicionar Designação de Atividade"
+    "ADD_ACTIVITY_DESIGNATION": "Adicionar Designação de Atividade",
+    "NEW_ACTIVITY_DESIGNATION": "Nova Designação de Atividade",
+    "EDIT_ACTIVITY_DESIGNATION": "Eidtar Designação de Atividade"
 
   },
   "USERS": {
