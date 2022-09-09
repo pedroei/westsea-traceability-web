@@ -38,7 +38,8 @@
     "ADMIN": "Administrador",
     "EMPLOYEE": "Funcionário",
     "CLIENT": "Cliente",
-    "NEW_USER": "Novo Utilizador"
+    "NEW_USER": "Novo Utilizador",
+    "EDIT_USER": "Editar Utilizador"
   },
   "PRODUCTS": {
     "PRODUCTS": "Produtos",

@@ -1,107 +1,42 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/Services/user.service';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {UserService} from 'src/app/Services/user.service';
+import {Role} from "../../enum/role";
 
 @Component({
   selector: 'app-edituser',
   templateUrl: './edituser.component.html',
   styleUrls: ['./edituser.component.scss']
 })
-export class EdituserComponent implements OnInit {
-  @Input() error: string | null;
+export class EdituserComponent {
+  @Input() error: string | null = null;
   form: FormGroup;
-  isEmployee = false
-  isAdmin = false
-  isClient = false
+  role = Role;
+  roles: string[] = [];
 
-  roles:string[]
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private router: Router,private formBuilder: FormBuilder,private userService:UserService, public dialogRef: MatDialogRef<EdituserComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private router: Router, private formBuilder: FormBuilder, private userService: UserService, public dialogRef: MatDialogRef<EdituserComponent>) {
     this.form = new FormGroup({
-      nome: new FormControl(''),
-      admin : new FormControl(''),
-      employee : new FormControl(''),
-      client : new FormControl('')
+      nome: new FormControl(data.dataKey.name, Validators.required),
+      role: new FormControl(data.dataKey.roles[0], Validators.required)
     });
-    this.error = null;
-    this.roles = data.dataKey.roles
-    if(this.roles.indexOf('ROLE_ADMIN') > -1){
-      this.isAdmin=true
-    }
-    if(this.roles.indexOf('ROLE_EMPLOYEE') > -1){
-      this.isEmployee=true
-    }
-    if(this.roles.indexOf('ROLE_CLIENT') > -1){
-      this.isClient=true
-    }
-   }
-
-  ngOnInit() {
-
   }
 
-  onAdminChange(){
-    if(this.isAdmin==false){
-      this.roles.push("ROLE_ADMIN")
-    }else{
-      const index = this.roles.indexOf("ROLE_ADMIN", 0);
-      if (index > -1) {
-          this.roles.splice(index, 1);
+  submit() {
+    this.userService.edit(
+      this.data.dataKey.id,
+      this.form.controls.nome.value != "" ? this.form.controls.nome.value : this.data.dataKey.name,
+      [this.form.controls.role.value]
+    ).subscribe(
+      (success) => {
+        this.dialogRef.close()
+      },
+      (err) => {
+        console.log(err)
+        this.error = 'ERRO'
       }
-    }
-    console.log(this.roles)
-  }
-
-  onEmployeeChange(){
-    if(this.isEmployee==false){
-      this.roles.push("ROLE_EMPLOYEE")
-    }else{
-      const index = this.roles.indexOf("ROLE_EMPLOYEE", 0);
-      if (index > -1) {
-          this.roles.splice(index, 1);
-      }
-    }
-    console.log(this.roles)
-  }
-
-  onClientChange(){
-    if(this.isClient==false){
-      this.roles.push("ROLE_CLIENT")
-    }else{
-      const index = this.roles.indexOf("ROLE_CLIENT", 0);
-      if (index > -1) {
-          this.roles.splice(index, 1);
-      }
-    }
-    console.log(this.roles)
-  }
-
-  submit(){
-    let username
-
-    if(this.form.controls.nome.value!=""){
-      username=this.form.controls.nome.value
-    }else{
-      username=this.data.dataKey.name
-    }
-
-    if(this.roles.length > 0){
-      this.userService.edit(
-        this.data.dataKey.id,
-        username,
-        this.roles
-        ).subscribe(
-          (success) => {this.dialogRef.close()},
-         		(err) =>{
-               console.log(err)
-               this.error = 'ERRO'
-             }
-             );
-    }else{
-      this.error = 'O Utilizador tem de ter pelo menos uma função atribuida'
-    }
+    );
   }
 
 }
