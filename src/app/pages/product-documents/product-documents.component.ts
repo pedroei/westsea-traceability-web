@@ -14,15 +14,12 @@ import { Produto } from 'src/app/types/produto';
 })
 export class ProductDocumentsComponent implements OnInit {
   loading = true;
-  showNav = true;
-  produto!: Produto;
+  product!: Produto;
   documents: any[] = [];
 
   constructor(
     private router: Router,
     private traceabilityService: TraceabilityService,
-    private helper: JwtHelperService,
-    private userService: UserService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -35,14 +32,6 @@ export class ProductDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = this.helper.decodeToken(this.userService.getUserToken);
-    if (
-      token.roles.includes('ROLE_CLIENT') &&
-      !token.roles.includes('ROLE_EMPLOYEE') &&
-      !token.roles.includes('ROLE_ADMIN')
-    ) {
-      this.showNav = false;
-    }
     this.load(this.router.url.split('/')[2]);
   }
 
@@ -51,7 +40,8 @@ export class ProductDocumentsComponent implements OnInit {
       .getTrace(referenceNumber)
       .pipe(
         tap((data: Produto) => {
-          this.produto = data;
+          console.log(data);
+          this.product = data;
           this.loading = false;
         }),
         tap((data: Produto) => {
@@ -63,10 +53,6 @@ export class ProductDocumentsComponent implements OnInit {
       .subscribe();
   }
 
-  sair() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
 
   getDocument(productId: string, docKey: DocumentKey) {
     this.traceabilityService
