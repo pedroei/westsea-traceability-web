@@ -46,6 +46,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatRippleModule} from "@angular/material/core";
 import {ToolbarModule} from "./components/toolbar/toolbar.module";
+import {MatRadioModule} from "@angular/material/radio";
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -112,7 +113,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
     MatToolbarModule,
     MatRippleModule,
-    ToolbarModule
+    ToolbarModule,
+    MatRadioModule
   ],
   providers: [
     LoginGuard,

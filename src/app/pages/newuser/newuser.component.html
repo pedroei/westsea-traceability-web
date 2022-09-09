@@ -1,26 +1,30 @@
 <form [formGroup]="form" (ngSubmit)="submit()" class="Form" autocomplete="off">
-  <mat-form-field>
-    <input class="ng-touched" type="text" matInput placeholder="Nome" formControlName="nome">
-    <mat-error *ngIf="form.controls.nome.invalid">Inválido</mat-error>
+  <h2 class="flex justify-center">{{"USERS.NEW_USER" | translate}}</h2>
+  <mat-form-field class="w-full">
+    <input class="ng-touched" type="text" matInput [placeholder]=" 'USERS.NAME' | translate" formControlName="nome">
+    <mat-error *ngIf="form.controls.nome.invalid">{{"USERS.INVALID" | translate}}</mat-error>
   </mat-form-field>
   <br>
+  <mat-form-field style="margin-right: 5px">
+    <input class="ng-touched" type="text" matInput [placeholder]=" 'LOGIN.EMAIL' | translate" formControlName="username">
+    <mat-error *ngIf="form.controls.username.invalid">{{"USERS.INVALID" | translate}}</mat-error>
+  </mat-form-field>
+
   <mat-form-field>
-    <input class="ng-touched" type="text" matInput placeholder="Username" formControlName="username">
-    <mat-error *ngIf="form.controls.username.invalid">Inválido</mat-error>
+    <input class="ng-touched" type="password" matInput [placeholder]=" 'LOGIN.PASSWORD' | translate" formControlName="password">
+    <mat-error *ngIf="form.controls.password.invalid">{{"USERS.INVALID" | translate}}</mat-error>
   </mat-form-field>
   <br>
-  <mat-form-field>
-    <input class="ng-touched" type="password" matInput placeholder="Password" formControlName="password">
-    <mat-error *ngIf="form.controls.password.invalid">Inválido</mat-error>
-  </mat-form-field>
+  <mat-radio-group formControlName="role" color="primary">
+    <mat-radio-button [value]="role.ADMIN">{{"USERS.ADMIN" | translate}}</mat-radio-button>
+    <mat-radio-button [value]="role.EMPLOYEE">{{"USERS.EMPLOYEE" | translate}}</mat-radio-button>
+    <mat-radio-button  [value]="role.CLIENT">{{"USERS.CLIENT" | translate}}</mat-radio-button>
+  </mat-radio-group>
   <br>
-  <mat-slide-toggle formControlName="admin" [(ngModel)]="isAdmin" (toggleChange)="onAdminChange()">ADMIN</mat-slide-toggle>
-  <mat-slide-toggle formControlName="employee" [(ngModel)]="isEmployee" (toggleChange)="onEmployeeChange()">EMPLOYEE</mat-slide-toggle>
-  <mat-slide-toggle formControlName="client" [(ngModel)]="isClient" (toggleChange)="onClientChange()">CLIENT</mat-slide-toggle>
   <p *ngIf="error" class="error">
       {{ error }}
   </p>
   <div class="button">
-      <button type="submit" mat-raised-button [disabled]="form.invalid" color="primary">Adicionar</button>
+      <button type="submit" mat-raised-button [disabled]="form.invalid" color="primary">{{"ADD" | translate}}</button>
   </div>
 </form>

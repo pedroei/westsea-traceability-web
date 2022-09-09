@@ -1,7 +1,7 @@
 {
   "LOGIN": {
     "LOGIN": "Login",
-    "EMAIL": "Email",
+    "EMAIL": "Username",
     "PASSWORD": "Password",
     "REQUIRED_EMAIL": "Email obrigatório.",
     "REQUIRED_PASSWORD": "Password obrigatório.",
@@ -17,6 +17,7 @@
   },
   "EDIT": "Editar",
   "REMOVE": "Remover",
+  "ADD": "Adiconar",
   "PRODUCT_DESIGNATION": {
     "PRODUCTS_DESIGNATIONS": "Designações de Produtos",
     "PRODUCT_DESIGNATION": "Designação de Produto",
@@ -32,7 +33,12 @@
   "USERS": {
     "USERS": "Utilizadores",
     "NAME": "Nome",
-    "ADD_USER": "Adicionar Utilizador"
+    "ADD_USER": "Adicionar Utilizador",
+    "INVALID": "Inválido",
+    "ADMIN": "Administrador",
+    "EMPLOYEE": "Funcionário",
+    "CLIENT": "Cliente",
+    "NEW_USER": "Novo Utilizador"
   },
   "PRODUCTS": {
     "PRODUCTS": "Produtos",
